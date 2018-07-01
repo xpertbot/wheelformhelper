@@ -25,3 +25,5 @@ Make sure you update the `composer.json` inside the plugin folder and change the
 
 Once the Path of the plugin is added to your `composer.json` you can run `composer require xpertbot\wheelformhelper`
 (or whatever `package\name` you chose)
+
+[More Information](https://docs.craftcms.com/v3/plugin-intro.html#getting-started)
