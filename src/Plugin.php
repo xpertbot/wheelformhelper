@@ -15,7 +15,7 @@ class Plugin extends \craft\base\Plugin
         {
             $event->message['extra_field'] = [
                 'label' => 'New Label',
-                'value' => 'Please Respond',
+                'value' => 'Lorem Ipsum',
                 'type' => "text"
             ];
         });
