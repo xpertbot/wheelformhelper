@@ -1,11 +1,11 @@
 {
     "name": "xpertbot/wheelformhelper",
     "description": "Helper plugin for Wheelform",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "type": "craft-plugin",
     "require": {
         "craftcms/cms": "^3.0.0",
-        "xpertbot/craft-wheelform": "^1.8"
+        "xpertbot/craft-wheelform": "^1.15"
     },
     "autoload": {
         "psr-4": {
