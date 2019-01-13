@@ -3,6 +3,7 @@ namespace wheelformhelper;
 
 use wheelform\Mailer;
 use yii\base\Event;
+use wheelform\controllers\MessageController;
 
 class Plugin extends \craft\base\Plugin
 {
@@ -10,6 +11,15 @@ class Plugin extends \craft\base\Plugin
     public function init()
     {
         parent::init();
+
+        Event::on(MessageController::class, MessageController::EVENT_BEFORE_SAVE, function($event){
+            // $field is an ActiveRecord Object
+            foreach($event->message as $field) {
+                if($field->field->name == "message") {
+                    $field->value = "Custom Value from event";
+                }
+            }
+        });
 
         Event::on(Mailer::class, Mailer::EVENT_BEFORE_SEND, function($event)
         {
