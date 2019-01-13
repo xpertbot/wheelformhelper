@@ -12,15 +12,20 @@ class Plugin extends \craft\base\Plugin
     {
         parent::init();
 
+        //First Event to modify values before saving to database
         Event::on(MessageController::class, MessageController::EVENT_BEFORE_SAVE, function($event){
-            // $field is an ActiveRecord Object
-            foreach($event->message as $field) {
-                if($field->field->name == "message") {
-                    $field->value = "Custom Value from event";
+            // Check for correct form
+            if($event->form_id == "1") {
+                // $field is an ActiveRecord Object
+                foreach($event->message as $field) {
+                    if($field->field->name == "message") {
+                        $field->value = "Custom Value from BeforeSave event";
+                    }
                 }
             }
         });
 
+        //Values from Above Event to be modified for email
         Event::on(Mailer::class, Mailer::EVENT_BEFORE_SEND, function($event)
         {
             //Add extra fields to message
@@ -57,6 +62,12 @@ class Plugin extends \craft\base\Plugin
                     }
                 }
             }
+        });
+
+        // Final Values to use for any third party libraries
+        Event::on(Mailer::class, Mailer::EVENT_AFTER_SEND, function($event)
+        {
+            // Mailchimp, Stripe, ConstactContact Integrations with final values
         });
     }
 }
